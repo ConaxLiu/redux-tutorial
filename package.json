@@ -1,0 +1,23 @@
+{
+  "name": "redux-tutorial",
+  "version": "1.0.0",
+  "description": "Playing around with redux",
+  "main": "basicReduxFunctions.html",
+  "dependencies": {
+    "redux": "^4.0.5"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ConaxLiu/redux-tutorial.git"
+  },
+  "author": "Conax Liu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ConaxLiu/redux-tutorial/issues"
+  },
+  "homepage": "https://github.com/ConaxLiu/redux-tutorial#readme"
+}

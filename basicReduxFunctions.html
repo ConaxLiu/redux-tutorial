@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Document</title>
+  <script src="redux.js"></script>
+  <script>
+
+    // An initial state is to be passed to the Reducer function
+    const initState = {
+      firstName: 'Conway',
+      lastName: 'Liu',
+      birthday: '10/1/1970'
+    }
+
+    // A Reducer function is a pure function that takes in the previous state, 
+    // the action to be dispatched, and return a new state for the store to keep
+    const myReducer = (state, action) => {
+      if(!state) state = initState;
+
+      switch (action.type) {
+        case 'CHANGE_FIRST_NAME':
+          return {
+            ...state,
+            firstName: action.data
+          }
+        case 'CHANGE_LAST_NAME':
+          return {
+            ...state,
+            lastName: action.data
+          }
+        case 'CHANGE_BIRTHDAY':
+            return {
+              ...state,
+              birthday: action.data
+            }
+        default:
+          return state;
+      }
+    }
+
+    const store = Redux.createStore(myReducer);
+
+    const handleFirstNameUpdate = () => {
+      const firstName = document.getElementById('firstName').value;
+      // Dispatch the action7
+      store.dispatch({type: 'CHANGE_FIRST_NAME', data: firstName})
+    }
+    
+    const handleLastNameUpdate = () => {
+      const lastName = document.getElementById('lastName').value;
+      // Dispatch the action7
+      store.dispatch({type: 'CHANGE_LAST_NAME', data: lastName})
+    }
+    
+    const handleBirthdayUpdate = () => {
+      const birthday = document.getElementById('birthday').value;
+      // Dispatch the action7
+      store.dispatch({type: 'CHANGE_BIRTHDAY', data: birthday})
+    }
+  </script>
+
+</head>
+<body>
+  <div>
+    <label for="firstName">First Name:</label>
+    <input type="text" name="firstName" id="firstName">
+    <button onclick="handleFirstNameUpdate()">Update</button>
+  </div>
+  <div>
+    <label for="lastName">Last Name:</label>
+    <input type="text" name="lastName" id="lastName">
+    <button onclick="handleLastNameUpdate()">Update</button>
+  </div>
+  <div>
+    <label for="birthday">Birthday:</label>
+    <input type="text" name="birthday" id="birthday">
+    <button onclick="handleBirthdayUpdate()">Update</button>
+  </div>
+  <div id="result">
+    
+  </div>
+  <script>
+    {
+      const {firstName, lastName, birthday} = store.getState();
+      document.getElementById('result').innerText = firstName + ' ' + lastName + ' was born on ' + birthday.toString()
+      
+      // Subscript to the state change event so we can update the UI whenever the state is changed
+      store.subscribe(() => {
+        const {firstName, lastName, birthday} = store.getState();
+        console.log(store.getState())
+        
+        document.getElementById('result').innerText = firstName + ' ' + lastName + ' was born on ' + birthday
+      })
+    }
+  </script>
+</body>
+</html>
+
+
